@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=1920, initial-scale=1, user-scalable=no">
+<title>Tomahawk Manufacturing // Company Spotlight</title>
+<style>
+:root {
+  --bg:#0b1015;--panel:#121a22;--ink:#e8eef4;--muted:#8794a2;--faint:#54616f;--line:#1e2832;
+  --brand:#FF6B00;--green:#43c98c;--blue:#5aa9e6;
+  --mono:ui-monospace,"SF Mono",Menlo,Consolas,monospace;
+  --disp:"Helvetica Neue",Arial,system-ui,sans-serif;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{width:100%;height:100%;overflow:hidden;background:var(--bg);color:var(--ink);
+  font-family:var(--disp);-webkit-font-smoothing:antialiased;user-select:none}
+.stage{position:relative;width:100%;height:100%;display:flex;align-items:center;justify-content:center}
+.screen{position:absolute;inset:0;opacity:0;visibility:hidden;transition:opacity .6s ease;display:flex;
+  flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:80px}
+.screen.active{opacity:1;visibility:visible}
+.screen h1{font-size:64px;font-weight:800;letter-spacing:-.02em;margin-bottom:24px;max-width:1200px}
+.screen h2{font-size:48px;font-weight:700;margin-bottom:32px;max-width:1200px}
+.screen p{font-size:20px;line-height:1.6;color:var(--muted);max-width:900px;margin-bottom:24px}
+.screen .tagline{font-size:28px;color:var(--muted);margin-top:16px}
+.screen .meta{font-family:var(--mono);font-size:14px;color:var(--faint);margin-top:40px;letter-spacing:.12em}
+.hero-img{max-width:800px;max-height:500px;object-fit:cover;border-radius:8px;margin-bottom:40px;
+  box-shadow:0 20px 60px rgba(0,0,0,.6)}
+.products-list{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:24px;margin:40px auto;
+  max-width:1000px;text-align:left}
+.product-item{background:var(--panel);border-left:4px solid var(--brand);padding:20px;border-radius:4px}
+.product-item .label{font-weight:700;color:var(--ink);margin-bottom:8px}
+.progress{position:fixed;bottom:0;left:0;width:100%;height:3px;background:var(--line)}
+.progress .fill{height:100%;background:var(--brand);transition:width .3s}
+.footer{position:fixed;bottom:40px;left:40px;right:40px;font-family:var(--mono);font-size:12px;
+  color:var(--faint);display:flex;justify-content:space-between;letter-spacing:.1em}
+.nav{position:fixed;bottom:40px;right:40px;font-family:var(--mono);font-size:12px;color:var(--muted);
+  cursor:pointer}
+.nav:hover{color:var(--brand)}
+.cta{margin-top:40px;padding:16px 40px;background:var(--brand);color:var(--bg);font-weight:700;
+  border-radius:4px;text-decoration:none;display:inline-block;font-family:var(--mono);letter-spacing:.1em;
+  font-size:14px}
+</style>
+</head>
+<body>
+<div class="stage">
+
+  <div class="screen active" data-id="hero">
+    <img src="./assets/tomahawk-manufacturing/img-01.jpeg" class="hero-img" alt="Tomahawk Manufacturing">
+    <h1>Tomahawk Manufacturing</h1>
+    <p class="tagline">Tomahawk Manufacturing, Inc. is the worlds meat processing equipment and food forming machine manufacturer. Contact Tomahawk Manufacturing, Inc. for your meat processing equipment needs.</p>
+    <div class="meta">unknown, WI // tomahawkmfg.com</div>
+  </div>
+
+
+  <div class="screen " data-id="about">
+    <h2>About</h2>
+    <p>Tomahawk Manufacturing is a manufacturing company based in unknown, delivering quality solutions.</p>
+    <div class="meta">Tomahawk Manufacturing</div>
+  </div>
+
+
+  <div class="screen " data-id="products">
+    <h2>What They Make</h2>
+    <div class="products-list"><div class="product-item"><span class="label">manufacturing products and services</span></div></div>
+    <div class="meta">Tomahawk Manufacturing</div>
+  </div>
+
+
+  <div class="screen " data-id="team">
+    <h2>The Team</h2>
+    <p>Experienced team</p>
+    <div class="meta">Tomahawk Manufacturing</div>
+  </div>
+
+
+  <div class="screen " data-id="customers">
+    <h2>Customers & Markets</h2>
+    <p>Serving customers across multiple industries</p>
+    <div class="meta">Tomahawk Manufacturing</div>
+  </div>
+
+
+  <div class="screen " data-id="impact">
+    <h2>The Impact</h2>
+    <p>Setting the standard for quality and reliability in the industry.</p>
+    <div class="meta">Tomahawk Manufacturing</div>
+  </div>
+
+
+  <div class="screen " data-id="vision">
+    <h2>The Vision</h2>
+    <p>Building the future of manufacturing</p>
+    <div class="meta">Tomahawk Manufacturing</div>
+  </div>
+
+
+  <div class="screen " data-id="neo_cta">
+    <h2>Explore AI-Driven Insights</h2>
+    <p>Stand up AI-driven insights for your operations. 30 days free. No governance overhead.</p>
+    <a href="https://neo.buntinggpt.com" class="cta">TRY NEO</a>
+    <div class="meta">n0v8v LLC | Company Spotlight v1.0 | 2026-07-02</div>
+  </div>
+
+  <div class="progress"><div class="fill" style="width:0%"></div></div>
+  <div class="footer">
+    <span>Tomahawk Manufacturing // unknown, WI</span>
+    <span id="slide-num">1 / 8</span>
+  </div>
+  <div class="nav" onclick="nextSlide()">NEXT →</div>
+</div>
+
+<script>
+let current = 0;
+const screens = document.querySelectorAll('.screen');
+const total = screens.length;
+
+function showSlide(n) {
+  screens.forEach(s => s.classList.remove('active'));
+  screens[n].classList.add('active');
+  document.getElementById('slide-num').textContent = (n + 1) + ' / ' + total;
+  document.querySelector('.progress .fill').style.width = ((n + 1) / total * 100) + '%';
+}
+
+function nextSlide() {
+  current = (current + 1) % total;
+  showSlide(current);
+}
+
+document.addEventListener('keydown', e => {
+  if (e.key === 'ArrowRight' || e.key === ' ') nextSlide();
+  if (e.key === 'ArrowLeft') { current = (current - 1 + total) % total; showSlide(current); }
+});
+
+showSlide(0);
+</script>
+</body>
+</html>
